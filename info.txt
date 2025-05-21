@@ -1,0 +1,10 @@
+https://github.com/cyrilgupta/electron-autoupdater
+https://github.com/electron/simple-samples/blob/master/url/app.js
+https://github.com/hokein/electron-sample-apps/blob/master/menus/main.js
+https://www.youtube.com/watch?v=oaza9tqCWXg
+https://www.logicflow.ai/blog/angular-desktop-applications-with-electron
+
+///
+https://github.com/N-Ziermann-YouTube/electron-course
+https://www.youtube.com/watch?v=fP-371MN0Ck
+

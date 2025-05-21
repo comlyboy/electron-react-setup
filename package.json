@@ -1,0 +1,42 @@
+{
+	"name": "workinance-desktop",
+	"version": "1.0.0",
+	"description": "Workinance.com desktop application",
+	"scripts": {
+		"prebuild": "rimraf build",
+		"build": "npm run prebuild && tsc",
+		"build:watch": "tsc -w",
+		"start:watch": "npm run build && nodemon -e ts --exec electron ./build/main.js",
+		"start": "npm run build && electron ./build/main.js",
+		"copy": "cpy package.json build && replace process.env.NEXT_PUBLIC_BASEURL productionUrl build/package.json",
+		"build:mac": "npm run build && npm run copy && electron-builder -m --project build",
+		"build:window": "npm run build && npm run copy && electron-builder -w --project build"
+	},
+	"repository": "",
+	"build": {
+		"productName": "workinance",
+		"appId": "com.inclood.workinance",
+		"directories": {
+			"output": "build"
+		},
+		"win": {
+			"target": "nsis",
+			"icon": "favicon.ico"
+		}
+	},
+	"keywords": [],
+	"author": "Cornelius Okeke",
+	"license": "MIT",
+	"dependencies": {
+		"electron-log": "^5.4.0"
+	},
+	"devDependencies": {
+		"cpy-cli": "^5.0.0",
+		"electron": "^36.2.1",
+		"electron-builder": "^26.0.12",
+		"nodemon": "^3.1.10",
+		"replace": "^1.2.2",
+		"rimraf": "^6.0.1",
+		"typescript": "^5.8.3"
+	}
+}
