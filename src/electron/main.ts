@@ -1,12 +1,7 @@
 import { app, BrowserWindow } from 'electron';
-import { ipcMainHandle, ipcMainOn, isDev } from './util.js';
-import { getStaticData, pollResources } from './resourceManager.js';
-import { getPreloadPath, getUIPath } from './pathResolver.js';
-import { createTray } from './tray.js';
-import { createMenu } from './menu.js';
 
 app.on('ready', () => {
-	const mainWindow = new BrowserWindow({
+	const mainWindow = new ({
 		webPreferences: {
 			preload: getPreloadPath(),
 		},
@@ -19,32 +14,11 @@ app.on('ready', () => {
 		mainWindow.loadFile(getUIPath());
 	}
 
-	pollResources(mainWindow);
 
-	ipcMainHandle('getStaticData', () => {
-		return getStaticData();
-	});
 
-	ipcMainOn('sendFrameAction', (payload) => {
-		switch (payload) {
-			case 'CLOSE':
-				mainWindow.close();
-				break;
-			case 'MAXIMIZE':
-				mainWindow.maximize();
-				break;
-			case 'MINIMIZE':
-				mainWindow.minimize();
-				break;
-		}
-	});
-
-	createTray(mainWindow);
-	handleCloseEvents(mainWindow);
-	createMenu(mainWindow);
 });
 
-function handleCloseEvents(mainWindow: BrowserWindow) {
+function handleCloseEvents(mainWindow: ) {
 	let willClose = false;
 
 	mainWindow.on('close', (e) => {

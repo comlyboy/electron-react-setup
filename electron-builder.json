@@ -1,4 +1,5 @@
 {
+	"$schema": "https://json.schemastore.org/electron-builder",
   "appId": "com.company.app-name",
   "files": ["dist-electron", "dist-ui"],
   "extraResources": ["dist-electron/preload.cjs", "src/assets/**"],
