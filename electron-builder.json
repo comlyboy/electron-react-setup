@@ -1,0 +1,16 @@
+{
+  "appId": "com.company.app-name",
+  "files": ["dist-electron", "dist-ui"],
+  "extraResources": ["dist-electron/preload.cjs", "src/assets/**"],
+  "icon": "./desktopIcon.png",
+  "mac": {
+    "target": "dmg"
+  },
+  "linux": {
+    "target": "AppImage",
+    "category": "Utility"
+  },
+  "win": {
+    "target": ["portable", "msi"]
+  }
+}

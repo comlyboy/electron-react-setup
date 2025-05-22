@@ -1,42 +1,60 @@
 {
-	"name": "workinance-desktop",
-	"version": "1.0.0",
-	"description": "Workinance.com desktop application",
+	"name": "electron-course",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"main": "dist-electron/main.js",
 	"scripts": {
-		"prebuild": "rimraf build",
-		"build": "npm run prebuild && tsc",
-		"build:watch": "tsc -w",
-		"start:watch": "npm run build && nodemon -e ts --exec electron ./build/main.js",
-		"start": "npm run build && electron ./build/main.js",
-		"copy": "cpy package.json build && replace process.env.NEXT_PUBLIC_BASEURL productionUrl build/package.json",
-		"build:mac": "npm run build && npm run copy && electron-builder -m --project build",
-		"build:window": "npm run build && npm run copy && electron-builder -w --project build"
+		"prebuild": "rimraf ",
+		"dev": "npm-run-all --parallel dev:react dev:electron",
+		"dev:react": "vite",
+		"dev:electron": "npm run transpile:electron && cross-env NODE_ENV=development electron .",
+		"build": "tsc && vite build",
+		"preview": "vite preview",
+		"transpile:electron": "tsc --project src/electron/tsconfig.json",
+		"dist:mac": "npm run transpile:electron && npm run build && electron-builder --mac --arm64",
+		"dist:win": "npm run transpile:electron && npm run build && electron-builder --win --x64",
+		"dist:linux": "npm run transpile:electron && npm run build && electron-builder --linux --x64",
+		"test:e2e": "playwright test",
+		"test:unit": "vitest src"
 	},
-	"repository": "",
-	"build": {
-		"productName": "workinance",
-		"appId": "com.inclood.workinance",
-		"directories": {
-			"output": "build"
-		},
-		"win": {
-			"target": "nsis",
-			"icon": "favicon.ico"
-		}
-	},
-	"keywords": [],
-	"author": "Cornelius Okeke",
-	"license": "MIT",
 	"dependencies": {
-		"electron-log": "^5.4.0"
+		"axios": "^1.9.0",
+		"classnames": "^2.5.1",
+		"os-utils": "^0.0.14",
+		"react": "^19.1.0",
+		"react-dom": "^19.1.0",
+		"react-hook-form": "^7.56.4",
+		"react-router-dom": "^7.6.0",
+		"recharts": "^2.15.3",
+		"sonner": "^2.0.3",
+		"tailwind-merge": "^3.3.0",
+		"zustand": "^5.0.5"
 	},
 	"devDependencies": {
-		"cpy-cli": "^5.0.0",
+		"@eslint/js": "^9.27.0",
+		"@playwright/test": "^1.52.0",
+		"@tailwindcss/postcss": "^4.1.7",
+		"@types/node": "^22.15.21",
+		"@types/os-utils": "^0.0.4",
+		"@types/react": "^19.1.5",
+		"@types/react-dom": "^19.1.5",
+		"@vitejs/plugin-react-swc": "^3.9.0",
+		"autoprefixer": "^10.4.21",
+		"cross-env": "^7.0.3",
 		"electron": "^36.2.1",
 		"electron-builder": "^26.0.12",
-		"nodemon": "^3.1.10",
-		"replace": "^1.2.2",
+		"eslint": "^9.27.0",
+		"eslint-plugin-react-hooks": "^5.2.0",
+		"eslint-plugin-react-refresh": "^0.4.20",
+		"globals": "^16.1.0",
+		"npm-run-all": "^4.1.5",
+		"postcss": "^8.5.3",
 		"rimraf": "^6.0.1",
-		"typescript": "^5.8.3"
+		"tailwindcss": "^4.1.7",
+		"typescript": "~5.8.3",
+		"typescript-eslint": "^8.32.1",
+		"vite": "^6.3.5",
+		"vitest": "^3.1.4"
 	}
 }
