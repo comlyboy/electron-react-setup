@@ -1,42 +1,44 @@
 import { app, BrowserWindow } from 'electron';
+import { getUIPath, isDev } from './utility.js';
 
-app.on('ready', () => {
-	const mainWindow = new ({
-		webPreferences: {
-			preload: getPreloadPath(),
-		},
-		// disables default system frame (dont do this if you want a proper working menu bar)
-		frame: false,
-	});
-	if (isDev()) {
-		mainWindow.loadURL('http://localhost:3000');
-	} else {
-		mainWindow.loadFile(getUIPath());
-	}
+// This method will be called when Electron has finished initialization and is ready to create browser windows.
+// Some APIs can only be used after this event occurs.
+app.whenReady().then(() => { createWindow(); });
 
-
-
+app.on("activate", () => {
+	// to avoid double window
+	if (BrowserWindow.getAllWindows().length === 0) createWindow();
 });
 
-function handleCloseEvents(mainWindow: ) {
-	let willClose = false;
 
-	mainWindow.on('close', (e) => {
-		if (willClose) {
-			return;
-		}
-		e.preventDefault();
-		mainWindow.hide();
-		if (app.dock) {
-			app.dock.hide();
-		}
+app.on("window-all-closed", () => {
+	// check for mac OS
+	if (process.platform !== "darwin") {
+		app.quit();
+	}
+});
+
+process.on('uncaughtException', (error) => {
+	console.log(error);
+})
+
+
+function createWindow() {
+	const browserWindow = new BrowserWindow({
+		width: 800,
+		height: 600,
+		show: false,
 	});
 
-	app.on('before-quit', () => {
-		willClose = true;
-	});
+	if (isDev()) {
+		browserWindow.loadURL('http://localhost:3000');
+	} else {
+		browserWindow.loadFile(getUIPath());
+	}
 
-	mainWindow.on('show', () => {
-		willClose = false;
-	});
+	browserWindow.once('ready-to-show', () => {
+		browserWindow.maximize();
+		browserWindow.show();
+	})
+	// browserWindow.webContents.openDevTools();
 }
