@@ -10,7 +10,7 @@ export default defineConfig({
 		outDir: 'dist-ui'
 	},
 	server: {
-		port: 3000,
+		port: 3001,
 		strictPort: true,
 		watch: {
 			ignored: ['**', '!src/renderer/**']

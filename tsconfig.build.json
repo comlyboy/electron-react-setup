@@ -1,12 +1,12 @@
 {
 	"compilerOptions": {
-		"target": "ESNext",
+		"target": "ES2024",
 		"module": "NodeNext",
-		"outDir": "../../dist-electron",
+		"outDir": "dist-electron",
 		"skipLibCheck": true,
 		"noUnusedLocals": true,
 		"useUnknownInCatchVariables": false,
-		"types": ["../../types"],
+		"types": ["./types"],
 	},
 	"exclude": ["**/*test.ts"]
 }

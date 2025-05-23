@@ -31,7 +31,7 @@ function createWindow() {
 	});
 
 	if (isDev()) {
-		browserWindow.loadURL('http://localhost:3000');
+		browserWindow.loadURL('http://localhost:3001');
 	} else {
 		browserWindow.loadFile(getUIPath());
 	}
