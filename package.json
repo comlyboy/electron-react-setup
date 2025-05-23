@@ -6,7 +6,7 @@
 	"main": "dist-electron/main.js",
 	"scripts": {
 		"prebuild": "rimraf ",
-		"dev": "npm-run-all --parallel dev:react dev:electron",
+		"dev": "npm-run-all --parallel dev:react dev:electron:watch",
 		"dev:react": "vite",
 		"dev:electron": "npm run build:electron && cross-env NODE_ENV=development electron .",
 		"dev:electron:watch": "nodemon --watch false --exec \"tsc --project src/core/tsconfig.json && cross-env NODE_ENV=development\" electron . --delay 200",
