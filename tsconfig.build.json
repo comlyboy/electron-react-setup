@@ -10,3 +10,16 @@
 	},
 	"exclude": ["**/*test.ts"]
 }
+
+// {
+// 	"compilerOptions": {
+// 		"target": "ESNext",
+// 		"module": "NodeNext",
+// 		"outDir": "dist-electron",
+// 		"skipLibCheck": true,
+// 		"noUnusedLocals": true,
+// 		"useUnknownInCatchVariables": false,
+// 		"types": ["./types"],
+// 	},
+// 	"exclude": ["node_modules", "test", "dist", "script", "**/*test.ts"]
+// }
