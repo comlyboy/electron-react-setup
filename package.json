@@ -12,7 +12,7 @@
 		"preview": "vite preview",
 		"build": "npm run build:electron && npm run build:react",
 		"build:react": "vite build",
-		"build:electron": "tsc --project src/electron/tsconfig.json",
+		"build:electron": "tsc --project src/core/tsconfig.json",
 		"dist:mac": "npm run build:electron && npm run build && electron-builder --mac --arm64",
 		"dist:win": "npm run build:electron && npm run build && electron-builder --win --x64",
 		"dist:linux": "npm run build:electron && npm run build && electron-builder --linux --x64",
