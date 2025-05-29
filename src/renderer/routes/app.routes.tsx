@@ -12,10 +12,10 @@ export const applicationRoute = createBrowserRouter([
 	},
 	{
 		path: '*',
-		element: <Navigate to="not-found" replace />,
+		element: <Navigate to="page-not-found" replace />,
 	},
 	{
-		path: 'not-found',
+		path: 'page-not-found',
 		element: <Suspense><NotFoundPage /></Suspense>
 	}
 ]);

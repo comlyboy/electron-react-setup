@@ -1,5 +1,9 @@
 import { app, BrowserWindow } from 'electron';
+import path, { dirname } from 'path';
+import { fileURLToPath } from 'url';
+
 import { getUIPath, isDev } from './utility.js';
+
 
 // This method will be called when Electron has finished initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
@@ -9,7 +13,6 @@ app.on("activate", () => {
 	// to avoid double window
 	if (BrowserWindow.getAllWindows().length === 0) createWindow();
 });
-
 
 app.on("window-all-closed", () => {
 	// check for mac OS
@@ -22,16 +25,21 @@ process.on('uncaughtException', (error) => {
 	console.log(error);
 })
 
-
 function createWindow() {
 	const browserWindow = new BrowserWindow({
 		width: 800,
 		height: 600,
 		show: false,
+		webPreferences: {
+			contextIsolation: true,
+			preload: path.join(dirname(fileURLToPath(import.meta.url)), 'preload.cjs'),
+			nodeIntegration: false
+		}
 	});
 
 	if (isDev()) {
-		browserWindow.loadURL('http://localhost:3001');
+		browserWindow.loadURL('http://localhost:5123');
+		browserWindow.webContents.openDevTools();
 	} else {
 		browserWindow.loadFile(getUIPath());
 	}
@@ -40,5 +48,5 @@ function createWindow() {
 		browserWindow.maximize();
 		browserWindow.show();
 	})
-	// browserWindow.webContents.openDevTools();
+	browserWindow.webContents.openDevTools();
 }

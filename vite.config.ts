@@ -7,10 +7,11 @@ export default defineConfig({
 	base: './',
 	build: {
 		sourcemap: true,
-		outDir: 'dist-ui'
+		outDir: 'dist-ui',
+		emptyOutDir: true
 	},
 	server: {
-		port: 3001,
+		// port: 5123,
 		strictPort: true,
 		watch: {
 			ignored: ['**', '!src/renderer/**']
