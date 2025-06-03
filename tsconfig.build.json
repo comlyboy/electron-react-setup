@@ -1,25 +1,29 @@
 {
 	"compilerOptions": {
-		"target": "ES2024",
-		"module": "NodeNext",
-		"outDir": "dist-electron",
+		"module": "commonjs",
+		"declaration": true,
+		"removeComments": true,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"allowSyntheticDefaultImports": true,
+		"target": "ES2022",
+		"sourceMap": true,
+		"outDir": "./dist-electron",
+		"baseUrl": "./electron",
+		"incremental": true,
 		"skipLibCheck": true,
+		"strict": true,
+		"esModuleInterop": true,
+		"noImplicitAny": true,
+		"strictNullChecks": false,
+		"allowUnreachableCode": false,
 		"noUnusedLocals": true,
+		"noUnusedParameters": false,
+		"strictBindCallApply": false,
 		"useUnknownInCatchVariables": false,
-		"types": ["./types"],
-	},
-	"exclude": ["**/*test.ts"]
-}
+		"forceConsistentCasingInFileNames": true,
+		"noFallthroughCasesInSwitch": true,
 
-// {
-// 	"compilerOptions": {
-// 		"target": "ESNext",
-// 		"module": "NodeNext",
-// 		"outDir": "dist-electron",
-// 		"skipLibCheck": true,
-// 		"noUnusedLocals": true,
-// 		"useUnknownInCatchVariables": false,
-// 		"types": ["./types"],
-// 	},
-// 	"exclude": ["node_modules", "test", "dist", "script", "**/*test.ts"]
-// }
+	},
+	"include": ["electron"]
+}

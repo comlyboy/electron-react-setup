@@ -1,8 +1,8 @@
 import { app, BrowserWindow } from 'electron';
-import path, { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import path from 'path';
 
-import { getUIPath, isDev } from './utility.js';
+import { getUIPath, isDev } from './utility';
+
 
 
 // This method will be called when Electron has finished initialization and is ready to create browser windows.
@@ -32,13 +32,13 @@ function createWindow() {
 		show: false,
 		webPreferences: {
 			contextIsolation: true,
-			preload: path.join(dirname(fileURLToPath(import.meta.url)), 'preload.cjs'),
+			preload: path.join(__dirname, 'preload.js'),
 			nodeIntegration: false
 		}
 	});
 
 	if (isDev()) {
-		browserWindow.loadURL('http://localhost:5123');
+		browserWindow.loadURL('http://localhost:5173');
 		browserWindow.webContents.openDevTools();
 	} else {
 		browserWindow.loadFile(getUIPath());
