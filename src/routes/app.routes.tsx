@@ -1,11 +1,11 @@
 import { lazy, Suspense } from "react";
-import { createBrowserRouter, Navigate } from "react-router-dom";
+import { createHashRouter, Navigate } from "react-router-dom";
 
 const LazyHomePage = lazy(() => import('../pages/HomePage'));
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
 
 
-export const applicationRoute = createBrowserRouter([
+export const applicationRoute = createHashRouter([
 	{
 		path: "/",
 		element: <Suspense><LazyHomePage /></Suspense>
